@@ -508,31 +508,722 @@
                 <div class="analytics-chart">
 
                     <div class="chart-line revenue-line"></div>
-                    <div class="chart-line cost-line"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                    <div class="axis">
-                        <span>01</span>
-                        <span>07</span>
-                        <span>14</span>
-                        <span>21</span>
-                        <span>30</span>
+    <title>BTC / MINING — Analytics</title>
+
+    <meta
+        name="description"
+        content="Bitcoin mining and market analytics dashboard."
+    >
+
+    <link rel="icon" href="assets/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">₿</div>
+
+            <div class="brand-text">
+                <strong>BTC / MINING</strong>
+                <span>NETWORK INTELLIGENCE</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="#overview" class="nav-item active">
+                <span>01</span>
+                Overview
+            </a>
+
+            <a href="#mining" class="nav-item">
+                <span>02</span>
+                Mining
+            </a>
+
+            <a href="#machines" class="nav-item">
+                <span>03</span>
+                Machines
+            </a>
+
+            <a href="#analytics" class="nav-item">
+                <span>04</span>
+                Analytics
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <span>SYSTEM</span>
+
+            <div class="system-status">
+                <i></i>
+                <span id="systemText">CONNECTING</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    BITCOIN NETWORK
+                </span>
+
+                <h1>
+                    MINING<br>
+                    <span>ANALYTICS</span>
+                </h1>
+
+            </div>
+
+            <div class="live-status">
+
+                <i></i>
+
+                <div>
+                    <strong id="liveText">LIVE</strong>
+                    <span id="clock">00:00:00</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- OVERVIEW -->
+
+        <section id="overview" class="section">
+
+            <div class="section-header">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <div>
+
+                    <p class="eyebrow">
+                        MARKET OVERVIEW
+                    </p>
+
+                    <h2>
+                        Bitcoin / USD
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-grid">
+
+                <!-- PRICE CARD -->
+
+                <article class="price-card">
+
+                    <div class="card-top">
+
+                        <span>
+                            BTC / USD
+                        </span>
+
+                        <span
+                            id="priceChange"
+                            class="positive"
+                        >
+                            —
+                        </span>
+
                     </div>
 
+
+                    <div
+                        id="btcPrice"
+                        class="price loading-text"
+                    >
+                        Loading...
+                    </div>
+
+
+                    <div class="price-meta">
+
+                        <span>
+                            24H HIGH
+                        </span>
+
+                        <strong id="btcHigh">
+                            —
+                        </strong>
+
+
+                        <span>
+                            24H LOW
+                        </span>
+
+                        <strong id="btcLow">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <!-- REAL CHART -->
+
+                    <div class="chart-wrapper">
+
+                        <div class="chart-loading" id="chartLoading">
+                            LOADING MARKET DATA
+                        </div>
+
+                        <svg
+                            id="priceChart"
+                            class="price-chart"
+                            viewBox="0 0 1000 300"
+                            preserveAspectRatio="none"
+                            aria-label="Bitcoin price chart"
+                        >
+
+                            <defs>
+
+                                <linearGradient
+                                    id="chartGradient"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1"
+                                >
+
+                                    <stop
+                                        offset="0%"
+                                        stop-opacity="0.15"
+                                    />
+
+                                    <stop
+                                        offset="100%"
+                                        stop-opacity="0"
+                                    />
+
+                                </linearGradient>
+
+                            </defs>
+
+                            <path
+                                id="chartArea"
+                                class="chart-area"
+                                d=""
+                            />
+
+                            <path
+                                id="chartLine"
+                                class="chart-line"
+                                d=""
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="chart-labels">
+
+                        <span id="label1">—</span>
+                        <span id="label2">—</span>
+                        <span id="label3">—</span>
+                        <span id="label4">—</span>
+                        <span id="label5">NOW</span>
+
+                    </div>
+
+
+                    <!-- RANGE BUTTONS -->
+
+                    <div class="range-controls">
+
+                        <button
+                            class="range-btn"
+                            data-days="1"
+                        >
+                            1D
+                        </button>
+
+                        <button
+                            class="range-btn active"
+                            data-days="1"
+                        >
+                            24H
+                        </button>
+
+                        <button
+                            class="range-btn"
+                            data-days="7"
+                        >
+                            7D
+                        </button>
+
+                        <button
+                            class="range-btn"
+                            data-days="30"
+                        >
+                            30D
+                        </button>
+
+                        <button
+                            class="range-btn"
+                            data-days="365"
+                        >
+                            1Y
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MARKET METRICS -->
+
+                <div class="metric-stack">
+
+                    <article class="metric-card">
+
+                        <span>
+                            MARKET CAP
+                        </span>
+
+                        <strong id="marketCap">
+                            —
+                        </strong>
+
+                        <small>
+                            GLOBAL
+                        </small>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <span>
+                            24H VOLUME
+                        </span>
+
+                        <strong id="volume">
+                            —
+                        </strong>
+
+                        <small>
+                            TRADING VOLUME
+                        </small>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <span>
+                            LAST UPDATE
+                        </span>
+
+                        <strong id="lastUpdate">
+                            —
+                        </strong>
+
+                        <small>
+                            API RESPONSE
+                        </small>
+
+                    </article>
+
                 </div>
 
-                <div class="legend">
+            </div>
+
+        </section>
+
+
+        <!-- MINING -->
+
+        <section id="mining" class="section">
+
+            <div class="section-header">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <div>
+
+                    <p class="eyebrow">
+                        NETWORK
+                    </p>
+
+                    <h2>
+                        Mining Performance
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <article class="stat">
 
                     <span>
-                        <i class="legend-revenue"></i>
-                        REVENUE
+                        NETWORK HASHRATE
+                    </span>
+
+                    <strong>
+                        1,021
+                    </strong>
+
+                    <small>
+                        EH/s
+                    </small>
+
+                    <div class="mini-bar">
+                        <span style="width:84%"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="stat">
+
+                    <span>
+                        NETWORK DIFFICULTY
+                    </span>
+
+                    <strong>
+                        155.6
+                    </strong>
+
+                    <small>
+                        T
+                    </small>
+
+                    <div class="mini-bar">
+                        <span style="width:72%"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="stat">
+
+                    <span>
+                        BLOCK HEIGHT
+                    </span>
+
+                    <strong>
+                        909,421
+                    </strong>
+
+                    <small>
+                        BLOCK
+                    </small>
+
+                    <div class="mini-bar">
+                        <span style="width:61%"></span>
+                    </div>
+
+                </article>
+
+
+                <article class="stat">
+
+                    <span>
+                        BLOCK REWARD
+                    </span>
+
+                    <strong>
+                        3.125
+                    </strong>
+
+                    <small>
+                        BTC
+                    </small>
+
+                    <div class="mini-bar">
+                        <span style="width:48%"></span>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- MACHINES -->
+
+        <section id="machines" class="section">
+
+            <div class="section-header">
+
+                <span class="section-number">
+                    03
+                </span>
+
+                <div>
+
+                    <p class="eyebrow">
+                        HARDWARE
+                    </p>
+
+                    <h2>
+                        Mining Machines
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="machine-table">
+
+                <div class="table-head">
+
+                    <span>MACHINE</span>
+                    <span>STATUS</span>
+                    <span>HASHRATE</span>
+                    <span>EFFICIENCY</span>
+                    <span>TEMP.</span>
+                    <span>POWER</span>
+
+                </div>
+
+
+                <div class="machine-row">
+
+                    <strong>
+                        ANTMINER S21
+                    </strong>
+
+                    <span class="online">
+                        ● ONLINE
                     </span>
 
                     <span>
-                        <i class="legend-cost"></i>
-                        ELECTRICITY
+                        200 TH/s
+                    </span>
+
+                    <span>
+                        17.5 J/TH
+                    </span>
+
+                    <span>
+                        64°C
+                    </span>
+
+                    <span>
+                        3.5 kW
                     </span>
 
                 </div>
+
+
+                <div class="machine-row">
+
+                    <strong>
+                        ANTMINER S21
+                    </strong>
+
+                    <span class="online">
+                        ● ONLINE
+                    </span>
+
+                    <span>
+                        198 TH/s
+                    </span>
+
+                    <span>
+                        17.7 J/TH
+                    </span>
+
+                    <span>
+                        62°C
+                    </span>
+
+                    <span>
+                        3.4 kW
+                    </span>
+
+                </div>
+
+
+                <div class="machine-row">
+
+                    <strong>
+                        WHATSminer M60
+                    </strong>
+
+                    <span class="warning">
+                        ● WARNING
+                    </span>
+
+                    <span>
+                        180 TH/s
+                    </span>
+
+                    <span>
+                        18.9 J/TH
+                    </span>
+
+                    <span>
+                        71°C
+                    </span>
+
+                    <span>
+                        3.4 kW
+                    </span>
+
+                </div>
+
+
+                <div class="machine-row">
+
+                    <strong>
+                        ANTMINER S19 XP
+                    </strong>
+
+                    <span class="offline">
+                        ● OFFLINE
+                    </span>
+
+                    <span>
+                        0 TH/s
+                    </span>
+
+                    <span>
+                        —
+                    </span>
+
+                    <span>
+                        31°C
+                    </span>
+
+                    <span>
+                        0 kW
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+
+        <section id="analytics" class="section">
+
+            <div class="section-header">
+
+                <span class="section-number">
+                    04
+                </span>
+
+                <div>
+
+                    <p class="eyebrow">
+                        FINANCIAL MODEL
+                    </p>
+
+                    <h2>
+                        Mining Economics
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="economics-grid">
+
+                <article class="economics-card">
+
+                    <span>
+                        EST. DAILY REVENUE
+                    </span>
+
+                    <strong>
+                        $41.82
+                    </strong>
+
+                    <small>
+                        BEFORE ELECTRICITY
+                    </small>
+
+                </article>
+
+
+                <article class="economics-card">
+
+                    <span>
+                        ELECTRICITY COST
+                    </span>
+
+                    <strong>
+                        $22.47
+                    </strong>
+
+                    <small>
+                        DAILY / $0.07 kWh
+                    </small>
+
+                </article>
+
+
+                <article class="economics-card highlight">
+
+                    <span>
+                        EST. DAILY PROFIT
+                    </span>
+
+                    <strong>
+                        $19.35
+                    </strong>
+
+                    <small>
+                        AFTER ELECTRICITY
+                    </small>
+
+                </article>
 
             </div>
 
@@ -548,11 +1239,11 @@
             </div>
 
             <div>
-                V1.0.0
+                V2.1.0
             </div>
 
             <div>
-                DATA MODE: DEMO
+                DATA: COINGECKO
             </div>
 
             <div>
