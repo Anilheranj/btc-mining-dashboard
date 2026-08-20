@@ -1694,6 +1694,1378 @@ footer div:not(:first-child) {
         padding: 20px;
     }
 
+:root {
+    --paper: #e8e5dc;
+    --paper-dark: #ddd9ce;
+
+    --ink: #171717;
+    --graphite: #55534d;
+    --gray: #858177;
+
+    --red: #d52b1e;
+    --blue: #284b63;
+
+    --line: rgba(23, 23, 23, 0.55);
+
+    --mono:
+        "IBM Plex Mono",
+        "Courier New",
+        monospace;
+
+    --sans:
+        "Inter",
+        Arial,
+        sans-serif;
+}
+
+
+/* =================================
+   RESET
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: #c9c5bb;
+
+    color: var(--ink);
+
+    font-family: var(--sans);
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font-family: var(--mono);
+}
+
+
+/* =================================
+   PAPER
+================================= */
+
+.paper {
+    position: relative;
+
+    width: min(1500px, 100%);
+
+    margin: 0 auto;
+
+    min-height: 100vh;
+
+    padding: 30px 45px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.15),
+            rgba(255,255,255,0.15)
+        ),
+        var(--paper);
+
+    overflow: hidden;
+}
+
+
+/* Technical paper texture */
+
+.paper::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.35;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 31px,
+            rgba(30,30,30,0.06) 32px
+        );
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    padding-bottom: 22px;
+
+    border-bottom: 2px solid var(--ink);
+
+    z-index: 2;
+}
+
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.bitcoin-symbol {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 2px solid var(--ink);
+
+    border-radius: 50%;
+
+    font-size: 23px;
+
+    font-weight: 800;
+}
+
+
+.logo strong {
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 14px;
+
+    letter-spacing: -0.05em;
+}
+
+
+.logo span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--gray);
+}
+
+
+.header-meta {
+    display: flex;
+
+    gap: 35px;
+}
+
+
+.header-meta div {
+    min-width: 90px;
+}
+
+
+.header-meta span {
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+
+    letter-spacing: 0.1em;
+}
+
+
+.header-meta strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+}
+
+
+/* =================================
+   NAV
+================================= */
+
+.nav {
+    position: relative;
+
+    display: flex;
+
+    gap: 28px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    z-index: 2;
+}
+
+
+.nav a {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    color: var(--gray);
+
+    transition: 0.2s;
+}
+
+
+.nav a:hover,
+.nav a.active {
+    color: var(--red);
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 260px;
+
+    padding: 60px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    z-index: 1;
+}
+
+
+.hero-title {
+    display: flex;
+
+    gap: 18px;
+}
+
+
+.red-mark {
+    color: var(--red);
+
+    font-size: 14px;
+
+    margin-top: 8px;
+}
+
+
+.hero-title p {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    letter-spacing: 0.1em;
+
+    color: var(--gray);
+}
+
+
+.hero h1 {
+    margin-top: 15px;
+
+    font-size: clamp(65px, 10vw, 150px);
+
+    line-height: 0.77;
+
+    letter-spacing: -0.09em;
+
+    font-weight: 900;
+}
+
+
+.annotation {
+    position: absolute;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--red);
+
+    transform: rotate(-2deg);
+}
+
+
+.annotation-one {
+    top: 70px;
+
+    right: 12%;
+}
+
+
+.annotation-two {
+    right: 3%;
+
+    bottom: 25px;
+}
+
+
+/* =================================
+   MARKET GRID
+================================= */
+
+.market-grid {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 3fr 1fr;
+
+    border-bottom: 2px solid var(--ink);
+
+    z-index: 2;
+}
+
+
+.price-panel {
+    padding: 35px 40px 40px 0;
+
+    border-right: 1px solid var(--line);
+}
+
+
+.panel-label {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: var(--gray);
+
+    border-bottom: 1px solid var(--line);
+
+    padding-bottom: 10px;
+}
+
+
+.price-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 35px;
+}
+
+
+.price-heading > span {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: var(--gray);
+}
+
+
+.change {
+    padding: 5px 8px;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.change.negative {
+    border-color: var(--red);
+
+    color: var(--red);
+}
+
+
+.btc-price {
+    margin-top: 14px;
+
+    font-size: clamp(55px, 8vw, 110px);
+
+    line-height: 0.9;
+
+    letter-spacing: -0.09em;
+
+    font-weight: 900;
+}
+
+
+.price-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-top: 35px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.price-details span {
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.price-details strong {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+}
+
+
+/* =================================
+   CHART
+================================= */
+
+.chart-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 30px;
+
+    margin-bottom: 10px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.chart-container {
+    position: relative;
+
+    height: 340px;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 49.8%,
+            rgba(23,23,23,0.1) 50%,
+            transparent 50.2%
+        );
+}
+
+
+.chart-container svg {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+}
+
+
+.chart-line {
+    fill: none;
+
+    stroke: var(--red);
+
+    stroke-width: 3;
+
+    vector-effect: non-scaling-stroke;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.chart-area {
+    fill: rgba(213,43,30,0.07);
+}
+
+
+.chart-loading {
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    background: rgba(232,229,220,0.9);
+
+    z-index: 5;
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: var(--gray);
+}
+
+
+.chart-loading.hidden {
+    display: none;
+}
+
+
+.chart-axis {
+    position: absolute;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.axis-y {
+    top: 10px;
+
+    left: 10px;
+}
+
+
+.axis-x {
+    right: 10px;
+
+    bottom: 8px;
+}
+
+
+.chart-labels {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+/* =================================
+   RANGE
+================================= */
+
+.range {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 22px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.range-btn {
+    padding: 7px 10px;
+
+    background: transparent;
+
+    border: 1px solid var(--line);
+
+    cursor: pointer;
+
+    font-size: 7px;
+
+    color: var(--ink);
+}
+
+
+.range-btn:hover,
+.range-btn.active {
+    background: var(--ink);
+
+    color: var(--paper);
+}
+
+
+/* =================================
+   MARKET DATA
+================================= */
+
+.market-data {
+    position: relative;
+
+    padding: 35px 0 0 30px;
+}
+
+
+.vertical-note {
+    position: absolute;
+
+    top: 32px;
+
+    right: -20px;
+
+    writing-mode: vertical-rl;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.data-box {
+    padding: 25px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.data-box span {
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.data-box strong {
+    display: block;
+
+    margin-top: 10px;
+
+    font-family: var(--mono);
+
+    font-size: 25px;
+
+    letter-spacing: -0.06em;
+}
+
+
+.data-box small {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: var(--mono);
+
+    font-size: 6px;
+
+    color: var(--gray);
+}
+
+
+.hand-note {
+    margin-top: 35px;
+
+    padding: 15px;
+
+    border-left: 2px solid var(--red);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    line-height: 1.7;
+
+    color: var(--graphite);
+
+    transform: rotate(-1deg);
+}
+
+
+.hand-note span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--red);
+
+    font-weight: 700;
+}
+
+
+/* =================================
+   SECTIONS
+================================= */
+
+.section {
+    position: relative;
+
+    padding: 65px 0;
+
+    border-bottom: 1px solid var(--line);
+
+    z-index: 2;
+}
+
+
+.section-heading {
+    display: grid;
+
+    grid-template-columns: 80px 1fr auto;
+
+    align-items: start;
+
+    margin-bottom: 30px;
+}
+
+
+.section-heading > span {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: var(--red);
+}
+
+
+.section-heading h2 {
+    font-size: clamp(35px, 5vw, 65px);
+
+    line-height: 0.85;
+
+    letter-spacing: -0.08em;
+}
+
+
+.section-heading p {
+    padding-top: 5px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+/* =================================
+   NETWORK
+================================= */
+
+.network-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border-top: 1px solid var(--line);
+
+    border-left: 1px solid var(--line);
+}
+
+
+.technical-card {
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 25px;
+
+    border-right: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.technical-card .number {
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--red);
+}
+
+
+.technical-card p {
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.technical-card strong {
+    display: inline-block;
+
+    margin-top: 45px;
+
+    font-family: var(--mono);
+
+    font-size: 35px;
+
+    letter-spacing: -0.08em;
+}
+
+
+.technical-card small {
+    font-family: var(--mono);
+
+    font-size: 8px;
+
+    color: var(--gray);
+}
+
+
+.measurement {
+    margin-top: 30px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--blue);
+}
+
+
+/* =================================
+   SYSTEM DIAGRAM
+================================= */
+
+.diagram {
+    margin-top: 50px;
+
+    padding: 30px;
+
+    border: 1px solid var(--line);
+}
+
+
+.diagram-title {
+    margin-bottom: 30px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.flow {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.node {
+    min-width: 140px;
+
+    padding: 20px;
+
+    border: 1px solid var(--ink);
+
+    background: rgba(255,255,255,0.12);
+}
+
+
+.node span,
+.node small {
+    display: block;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.node strong {
+    display: block;
+
+    margin: 15px 0 5px;
+
+    font-family: var(--mono);
+
+    font-size: 14px;
+}
+
+
+.arrow {
+    font-family: var(--mono);
+
+    color: var(--red);
+
+    font-size: 10px;
+}
+
+
+/* =================================
+   HARDWARE
+================================= */
+
+.hardware-table {
+    overflow-x: auto;
+
+    border-top: 2px solid var(--ink);
+
+    border-left: 1px solid var(--line);
+}
+
+
+.table-head,
+.machine-row {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr
+        .7fr
+        .8fr;
+
+    min-width: 850px;
+}
+
+
+.table-head {
+    background: var(--ink);
+
+    color: var(--paper);
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+}
+
+
+.table-head span,
+.machine-row > * {
+    padding: 18px;
+
+    border-right: 1px solid var(--line);
+}
+
+
+.machine-row {
+    min-height: 65px;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--line);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+}
+
+
+.machine-row strong {
+    font-size: 9px;
+}
+
+
+.online {
+    color: #167a3e;
+}
+
+
+.warning {
+    color: #a65e00;
+}
+
+
+.offline {
+    color: var(--red);
+}
+
+
+/* =================================
+   ECONOMICS
+================================= */
+
+.economics {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid var(--line);
+
+    border-left: 1px solid var(--line);
+}
+
+
+.economics article {
+    min-height: 220px;
+
+    padding: 30px;
+
+    border-right: 1px solid var(--line);
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.economics span {
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.economics strong {
+    display: block;
+
+    margin-top: 55px;
+
+    font-family: var(--mono);
+
+    font-size: 45px;
+
+    letter-spacing: -0.08em;
+}
+
+
+.economics small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+.economics .profit {
+    background: var(--ink);
+
+    color: var(--paper);
+}
+
+
+.economics .profit span,
+.economics .profit small {
+    color: #aaa69c;
+}
+
+
+.calculation {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 30px;
+
+    padding: 18px;
+
+    border: 1px dashed var(--graphite);
+
+    font-family: var(--mono);
+
+    font-size: 8px;
+}
+
+
+.calculation span:first-child {
+    color: var(--red);
+}
+
+
+.calculation code {
+    font-family: var(--mono);
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 25px 0;
+
+    font-family: var(--mono);
+
+    font-size: 7px;
+
+    color: var(--gray);
+}
+
+
+footer div:not(:first-child) {
+    text-align: right;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1000px) {
+
+    .paper {
+        padding: 25px;
+    }
+
+
+    .market-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .price-panel {
+        padding-right: 0;
+
+        border-right: none;
+    }
+
+
+    .market-data {
+        padding: 20px 0;
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 20px;
+    }
+
+
+    .vertical-note {
+        display: none;
+    }
+
+
+    .hand-note {
+        grid-column: 1 / -1;
+    }
+
+
+    .network-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .flow {
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .paper {
+        padding: 18px;
+    }
+
+
+    .header {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .header-meta {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+
+    .header-meta div {
+        min-width: auto;
+    }
+
+
+    .nav {
+        overflow-x: auto;
+
+        gap: 20px;
+
+        white-space: nowrap;
+    }
+
+
+    .hero {
+        min-height: 220px;
+
+        padding: 45px 0;
+    }
+
+
+    .hero h1 {
+        font-size: 60px;
+    }
+
+
+    .annotation {
+        display: none;
+    }
+
+
+    .btc-price {
+        font-size: 58px;
+
+        word-break: break-all;
+    }
+
+
+    .price-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .price-details div:last-child {
+        grid-column: 1 / -1;
+    }
+
+
+    .chart-container {
+        height: 230px;
+    }
+
+
+    .market-data {
+        grid-template-columns: 1fr;
+    }
+
+
+    .network-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-heading {
+        grid-template-columns: 45px 1fr;
+    }
+
+
+    .section-heading p {
+        grid-column: 2;
+
+        margin-top: 12px;
+    }
+
+
+    .flow {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .arrow {
+        text-align: center;
+
+        transform: rotate(90deg);
+    }
+
+
+    .economics {
+        grid-template-columns: 1fr;
+    }
+
+
+    .calculation {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    footer {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px;
+    }
+
+
+    footer div:not(:first-child) {
+        text-align: left;
+    }
+}
     .price {
         font-size: 58px;
     }
@@ -1755,48 +3127,7 @@ footer div:not(:first-child) {
         display: grid;
 
         grid-template-columns: repeat(5, 1fr);
-
-        margin-top: 25px;
-    }
-
-    .nav-item {
-        justify-content: center;
-
-        border-top: none;
-
-        font-size: 8px;
-
-        padding: 8px 2px;
-    }
-
-    .nav-item span {
-        display: none;
-    }
-
-    .sidebar-footer {
-        display: none;
-    }
-
-    .main {
-        grid-column: auto;
-
-        padding: 25px 18px;
-    }
-
-    .topbar {
-        padding-bottom: 40px;
-    }
-
-    .topbar h1 {
-        font-size: 55px;
-    }
-
-    .live-status {
-er-bottom: none;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
+umns: 1fr;
     }
 
     .economics-grid {
