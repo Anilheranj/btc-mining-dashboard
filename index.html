@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BTC / MINING — Analytics Dashboard</title>
+    <title>BTC / MINING — Concept 01</title>
 
     <meta
         name="description"
-        content="Bitcoin mining analytics dashboard"
+        content="Bitcoin mining conceptual analytics dashboard."
     >
-
-    <link rel="icon" href="assets/favicon.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
     >
 
@@ -26,660 +25,168 @@
 
 <body>
 
-<div class="app">
+<div class="paper">
 
-    <!-- SIDEBAR -->
+    <!-- =================================
+         HEADER
+    ================================== -->
 
-    <aside class="sidebar">
+    <header class="header">
 
-        <div class="brand">
-            <div class="brand-mark">₿</div>
+        <div class="logo">
+
+            <div class="bitcoin-symbol">
+                ₿
+            </div>
 
             <div>
                 <strong>BTC / MINING</strong>
-                <span>NETWORK INTELLIGENCE</span>
+                <span>NETWORK OBSERVATION SYSTEM</span>
             </div>
+
         </div>
 
-        <nav class="navigation">
 
-            <a href="#overview" class="nav-item active">
-                <span>01</span>
-                Overview
-            </a>
-
-            <a href="#market" class="nav-item">
-                <span>02</span>
-                Market
-            </a>
-
-            <a href="#mining" class="nav-item">
-                <span>03</span>
-                Mining
-            </a>
-
-            <a href="#machines" class="nav-item">
-                <span>04</span>
-                Machines
-            </a>
-
-            <a href="#analytics" class="nav-item">
-                <span>05</span>
-                Analytics
-            </a>
-
-        </nav>
-
-        <div class="sidebar-footer">
-            <span>SYSTEM</span>
-
-            <div class="system-status">
-                <i></i>
-                ALL SYSTEMS NORMAL
-            </div>
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <!-- HEADER -->
-
-        <header class="topbar">
+        <div class="header-meta">
 
             <div>
-                <span class="eyebrow">BITCOIN NETWORK</span>
-
-                <h1>
-                    MINING<br>
-                    <span>ANALYTICS</span>
-                </h1>
+                <span>PROJECT</span>
+                <strong>CONCEPT 01</strong>
             </div>
-
-            <div class="live-status">
-                <i></i>
-
-                <div>
-                    <strong>LIVE</strong>
-                    <span id="clock">00:00:00</span>
-                </div>
-            </div>
-
-        </header>
-
-
-        <!-- OVERVIEW -->
-
-        <section id="overview" class="section">
-
-            <div class="section-header">
-                <span class="section-number">01</span>
-
-                <div>
-                    <p class="eyebrow">MARKET OVERVIEW</p>
-                    <h2>Bitcoin / USD</h2>
-                </div>
-            </div>
-
-
-            <div class="hero-grid">
-
-                <!-- PRICE -->
-
-                <article class="price-card">
-
-                    <div class="card-top">
-                        <span>BTC / USD</span>
-
-                        <span class="positive">
-                            +2.84%
-                        </span>
-                    </div>
-
-                    <div class="price">
-                        $104,284
-                    </div>
-
-                    <div class="price-meta">
-                        <span>24H HIGH</span>
-                        <strong>$106,421</strong>
-
-                        <span>24H LOW</span>
-                        <strong>$100,812</strong>
-                    </div>
-
-                    <div class="chart">
-                        <svg
-                            viewBox="0 0 800 260"
-                            preserveAspectRatio="none"
-                        >
-
-                            <polyline
-                                points="
-                                0,210
-                                50,190
-                                100,200
-                                150,160
-                                200,175
-                                250,140
-                                300,155
-                                350,110
-                                400,130
-                                450,95
-                                500,115
-                                550,80
-                                600,90
-                                650,55
-                                700,75
-                                750,35
-                                800,50
-                                "
-                            />
-
-                        </svg>
-                    </div>
-
-                    <div class="chart-labels">
-                        <span>00:00</span>
-                        <span>06:00</span>
-                        <span>12:00</span>
-                        <span>18:00</span>
-                        <span>NOW</span>
-                    </div>
-
-                </article>
-
-
-                <!-- MARKET STATS -->
-
-                <div class="metric-stack">
-
-                    <article class="metric-card">
-
-                        <span>MARKET CAP</span>
-
-                        <strong>
-                            $2.07T
-                        </strong>
-
-                        <small>
-                            +3.12% / 24H
-                        </small>
-
-                    </article>
-
-
-                    <article class="metric-card">
-
-                        <span>24H VOLUME</span>
-
-                        <strong>
-                            $58.4B
-                        </strong>
-
-                        <small>
-                            GLOBAL VOLUME
-                        </small>
-
-                    </article>
-
-
-                    <article class="metric-card">
-
-                        <span>BTC DOMINANCE</span>
-
-                        <strong>
-                            58.7%
-                        </strong>
-
-                        <small>
-                            +0.42%
-                        </small>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- MINING -->
-
-        <section id="mining" class="section">
-
-            <div class="section-header">
-
-                <span class="section-number">02</span>
-
-                <div>
-                    <p class="eyebrow">NETWORK</p>
-                    <h2>Mining Performance</h2>
-                </div>
-
-            </div>
-
-
-            <div class="stats-grid">
-
-                <article class="stat">
-
-                    <span>NETWORK HASHRATE</span>
-
-                    <strong>1,021</strong>
-
-                    <small>EH/s</small>
-
-                    <div class="mini-bar">
-                        <span style="width: 84%"></span>
-                    </div>
-
-                </article>
-
-
-                <article class="stat">
-
-                    <span>NETWORK DIFFICULTY</span>
-
-                    <strong>155.6</strong>
-
-                    <small>T</small>
-
-                    <div class="mini-bar">
-                        <span style="width: 72%"></span>
-                    </div>
-
-                </article>
-
-
-                <article class="stat">
-
-                    <span>BLOCK HEIGHT</span>
-
-                    <strong>909,421</strong>
-
-                    <small>BLOCK</small>
-
-                    <div class="mini-bar">
-                        <span style="width: 61%"></span>
-                    </div>
-
-                </article>
-
-
-                <article class="stat">
-
-                    <span>BLOCK REWARD</span>
-
-                    <strong>3.125</strong>
-
-                    <small>BTC</small>
-
-                    <div class="mini-bar">
-                        <span style="width: 48%"></span>
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- MACHINES -->
-
-        <section id="machines" class="section">
-
-            <div class="section-header">
-
-                <span class="section-number">03</span>
-
-                <div>
-                    <p class="eyebrow">HARDWARE</p>
-                    <h2>Mining Machines</h2>
-                </div>
-
-            </div>
-
-
-            <div class="machine-table">
-
-                <div class="table-head">
-                    <span>MACHINE</span>
-                    <span>STATUS</span>
-                    <span>HASHRATE</span>
-                    <span>EFFICIENCY</span>
-                    <span>TEMP.</span>
-                    <span>POWER</span>
-                </div>
-
-
-                <div class="machine-row">
-
-                    <strong>ANTMINER S21</strong>
-
-                    <span class="online">
-                        ● ONLINE
-                    </span>
-
-                    <span>200 TH/s</span>
-
-                    <span>17.5 J/TH</span>
-
-                    <span>64°C</span>
-
-                    <span>3.5 kW</span>
-
-                </div>
-
-
-                <div class="machine-row">
-
-                    <strong>ANTMINER S21</strong>
-
-                    <span class="online">
-                        ● ONLINE
-                    </span>
-
-                    <span>198 TH/s</span>
-
-                    <span>17.7 J/TH</span>
-
-                    <span>62°C</span>
-
-                    <span>3.4 kW</span>
-
-                </div>
-
-
-                <div class="machine-row">
-
-                    <strong>WHATSminer M60</strong>
-
-                    <span class="warning">
-                        ● WARNING
-                    </span>
-
-                    <span>180 TH/s</span>
-
-                    <span>18.9 J/TH</span>
-
-                    <span>71°C</span>
-
-                    <span>3.4 kW</span>
-
-                </div>
-
-
-                <div class="machine-row">
-
-                    <strong>ANTMINER S19 XP</strong>
-
-                    <span class="offline">
-                        ● OFFLINE
-                    </span>
-
-                    <span>0 TH/s</span>
-
-                    <span>—</span>
-
-                    <span>31°C</span>
-
-                    <span>0 kW</span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ANALYTICS -->
-
-        <section id="analytics" class="section">
-
-            <div class="section-header">
-
-                <span class="section-number">04</span>
-
-                <div>
-                    <p class="eyebrow">FINANCIAL MODEL</p>
-                    <h2>Mining Economics</h2>
-                </div>
-
-            </div>
-
-
-            <div class="economics-grid">
-
-                <article class="economics-card">
-
-                    <span>EST. DAILY REVENUE</span>
-
-                    <strong>$41.82</strong>
-
-                    <small>BEFORE ELECTRICITY</small>
-
-                </article>
-
-
-                <article class="economics-card">
-
-                    <span>ELECTRICITY COST</span>
-
-                    <strong>$22.47</strong>
-
-                    <small>DAILY / $0.07 kWh</small>
-
-                </article>
-
-
-                <article class="economics-card highlight">
-
-                    <span>EST. DAILY PROFIT</span>
-
-                    <strong>$19.35</strong>
-
-                    <small>AFTER ELECTRICITY</small>
-
-                </article>
-
-            </div>
-
-
-            <div class="analytics-panel">
-
-                <div class="analytics-header">
-
-                    <div>
-                        <span class="eyebrow">PROFITABILITY</span>
-                        <h3>Revenue / Cost</h3>
-                    </div>
-
-                    <span>30 DAYS</span>
-
-                </div>
-
-
-                <div class="analytics-chart">
-
-                    <div class="chart-line revenue-line"></div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>BTC / MINING — Analytics</title>
-
-    <meta
-        name="description"
-        content="Bitcoin mining and market analytics dashboard."
-    >
-
-    <link rel="icon" href="assets/favicon.svg">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-<div class="app">
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="brand">
-            <div class="brand-mark">₿</div>
-
-            <div class="brand-text">
-                <strong>BTC / MINING</strong>
-                <span>NETWORK INTELLIGENCE</span>
-            </div>
-        </div>
-
-        <nav class="navigation">
-
-            <a href="#overview" class="nav-item active">
-                <span>01</span>
-                Overview
-            </a>
-
-            <a href="#mining" class="nav-item">
-                <span>02</span>
-                Mining
-            </a>
-
-            <a href="#machines" class="nav-item">
-                <span>03</span>
-                Machines
-            </a>
-
-            <a href="#analytics" class="nav-item">
-                <span>04</span>
-                Analytics
-            </a>
-
-        </nav>
-
-        <div class="sidebar-footer">
-
-            <span>SYSTEM</span>
-
-            <div class="system-status">
-                <i></i>
-                <span id="systemText">CONNECTING</span>
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <!-- HEADER -->
-
-        <header class="topbar">
 
             <div>
-
-                <span class="eyebrow">
-                    BITCOIN NETWORK
-                </span>
-
-                <h1>
-                    MINING<br>
-                    <span>ANALYTICS</span>
-                </h1>
-
+                <span>STATUS</span>
+                <strong id="systemStatus">
+                    CONNECTING
+                </strong>
             </div>
 
-            <div class="live-status">
-
-                <i></i>
-
-                <div>
-                    <strong id="liveText">LIVE</strong>
-                    <span id="clock">00:00:00</span>
-                </div>
-
+            <div>
+                <span>TIME</span>
+                <strong id="clock">
+                    00:00:00
+                </strong>
             </div>
 
-        </header>
+        </div>
+
+    </header>
 
 
-        <!-- OVERVIEW -->
+    <!-- =================================
+         NAV
+    ================================== -->
 
-        <section id="overview" class="section">
+    <nav class="nav">
 
-            <div class="section-header">
+        <a href="#market" class="active">
+            01 / MARKET
+        </a>
 
-                <span class="section-number">
-                    01
+        <a href="#network">
+            02 / NETWORK
+        </a>
+
+        <a href="#hardware">
+            03 / HARDWARE
+        </a>
+
+        <a href="#economics">
+            04 / ECONOMICS
+        </a>
+
+    </nav>
+
+
+    <!-- =================================
+         HERO
+    ================================== -->
+
+    <main>
+
+        <section class="hero" id="market">
+
+            <div class="hero-title">
+
+                <span class="red-mark">
+                    ■
                 </span>
 
                 <div>
 
-                    <p class="eyebrow">
-                        MARKET OVERVIEW
+                    <p>
+                        BITCOIN NETWORK / LIVE OBSERVATION
                     </p>
 
-                    <h2>
-                        Bitcoin / USD
-                    </h2>
+                    <h1>
+                        MINING<br>
+                        SYSTEM
+                    </h1>
 
                 </div>
 
             </div>
 
 
-            <div class="hero-grid">
+            <div class="annotation annotation-one">
+                A — MARKET VALUE
+            </div>
 
-                <!-- PRICE CARD -->
+            <div class="annotation annotation-two">
+                DRAWING No. 001
+            </div>
 
-                <article class="price-card">
+        </section>
 
-                    <div class="card-top">
 
-                        <span>
-                            BTC / USD
-                        </span>
+        <!-- =================================
+             PRICE SECTION
+        ================================== -->
 
-                        <span
-                            id="priceChange"
-                            class="positive"
-                        >
-                            —
-                        </span>
+        <section class="market-grid">
 
-                    </div>
+            <article class="price-panel">
 
+                <div class="panel-label">
+
+                    <span>
+                        FIG. 01
+                    </span>
+
+                    <span>
+                        BTC / USD
+                    </span>
+
+                </div>
+
+
+                <div class="price-heading">
+
+                    <span>
+                        CURRENT MARKET VALUE
+                    </span>
 
                     <div
-                        id="btcPrice"
-                        class="price loading-text"
+                        id="priceChange"
+                        class="change"
                     >
-                        Loading...
+                        —
                     </div>
 
+                </div>
 
-                    <div class="price-meta">
+
+                <div
+                    id="btcPrice"
+                    class="btc-price"
+                >
+                    LOADING
+                </div>
+
+
+                <div class="price-details">
+
+                    <div>
 
                         <span>
                             24H HIGH
@@ -689,6 +196,9 @@
                             —
                         </strong>
 
+                    </div>
+
+                    <div>
 
                         <span>
                             24H LOW
@@ -700,158 +210,7 @@
 
                     </div>
 
-
-                    <!-- REAL CHART -->
-
-                    <div class="chart-wrapper">
-
-                        <div class="chart-loading" id="chartLoading">
-                            LOADING MARKET DATA
-                        </div>
-
-                        <svg
-                            id="priceChart"
-                            class="price-chart"
-                            viewBox="0 0 1000 300"
-                            preserveAspectRatio="none"
-                            aria-label="Bitcoin price chart"
-                        >
-
-                            <defs>
-
-                                <linearGradient
-                                    id="chartGradient"
-                                    x1="0"
-                                    y1="0"
-                                    x2="0"
-                                    y2="1"
-                                >
-
-                                    <stop
-                                        offset="0%"
-                                        stop-opacity="0.15"
-                                    />
-
-                                    <stop
-                                        offset="100%"
-                                        stop-opacity="0"
-                                    />
-
-                                </linearGradient>
-
-                            </defs>
-
-                            <path
-                                id="chartArea"
-                                class="chart-area"
-                                d=""
-                            />
-
-                            <path
-                                id="chartLine"
-                                class="chart-line"
-                                d=""
-                            />
-
-                        </svg>
-
-                    </div>
-
-
-                    <div class="chart-labels">
-
-                        <span id="label1">—</span>
-                        <span id="label2">—</span>
-                        <span id="label3">—</span>
-                        <span id="label4">—</span>
-                        <span id="label5">NOW</span>
-
-                    </div>
-
-
-                    <!-- RANGE BUTTONS -->
-
-                    <div class="range-controls">
-
-                        <button
-                            class="range-btn"
-                            data-days="1"
-                        >
-                            1D
-                        </button>
-
-                        <button
-                            class="range-btn active"
-                            data-days="1"
-                        >
-                            24H
-                        </button>
-
-                        <button
-                            class="range-btn"
-                            data-days="7"
-                        >
-                            7D
-                        </button>
-
-                        <button
-                            class="range-btn"
-                            data-days="30"
-                        >
-                            30D
-                        </button>
-
-                        <button
-                            class="range-btn"
-                            data-days="365"
-                        >
-                            1Y
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <!-- MARKET METRICS -->
-
-                <div class="metric-stack">
-
-                    <article class="metric-card">
-
-                        <span>
-                            MARKET CAP
-                        </span>
-
-                        <strong id="marketCap">
-                            —
-                        </strong>
-
-                        <small>
-                            GLOBAL
-                        </small>
-
-                    </article>
-
-
-                    <article class="metric-card">
-
-                        <span>
-                            24H VOLUME
-                        </span>
-
-                        <strong id="volume">
-                            —
-                        </strong>
-
-                        <small>
-                            TRADING VOLUME
-                        </small>
-
-                    </article>
-
-
-                    <article class="metric-card">
+                    <div>
 
                         <span>
                             LAST UPDATE
@@ -861,51 +220,270 @@
                             —
                         </strong>
 
-                        <small>
-                            API RESPONSE
-                        </small>
-
-                    </article>
+                    </div>
 
                 </div>
 
-            </div>
+
+                <!-- CHART -->
+
+                <div class="chart-title">
+
+                    <span>
+                        PRICE TRAJECTORY
+                    </span>
+
+                    <span>
+                        LIVE / USD
+                    </span>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <div
+                        id="chartLoading"
+                        class="chart-loading"
+                    >
+                        FETCHING MARKET DATA...
+                    </div>
+
+                    <svg
+                        id="priceChart"
+                        viewBox="0 0 1000 350"
+                        preserveAspectRatio="none"
+                    >
+
+                        <defs>
+
+                            <pattern
+                                id="grid"
+                                width="50"
+                                height="50"
+                                patternUnits="userSpaceOnUse"
+                            >
+
+                                <path
+                                    d="M 50 0 L 0 0 0 50"
+                                    fill="none"
+                                    stroke="#777"
+                                    stroke-width="0.5"
+                                    opacity="0.22"
+                                />
+
+                            </pattern>
+
+                        </defs>
+
+
+                        <rect
+                            width="1000"
+                            height="350"
+                            fill="url(#grid)"
+                        />
+
+
+                        <path
+                            id="chartArea"
+                            class="chart-area"
+                            d=""
+                        />
+
+
+                        <path
+                            id="chartLine"
+                            class="chart-line"
+                            d=""
+                        />
+
+                    </svg>
+
+
+                    <div class="chart-axis axis-y">
+                        USD
+                    </div>
+
+                    <div class="chart-axis axis-x">
+                        TIME →
+                    </div>
+
+                </div>
+
+
+                <div class="chart-labels">
+
+                    <span id="label1">—</span>
+                    <span id="label2">—</span>
+                    <span id="label3">—</span>
+                    <span id="label4">—</span>
+                    <span id="label5">NOW</span>
+
+                </div>
+
+
+                <!-- RANGE -->
+
+                <div class="range">
+
+                    <span>
+                        TIME RANGE:
+                    </span>
+
+                    <button
+                        class="range-btn active"
+                        data-days="1"
+                    >
+                        24H
+                    </button>
+
+                    <button
+                        class="range-btn"
+                        data-days="7"
+                    >
+                        7D
+                    </button>
+
+                    <button
+                        class="range-btn"
+                        data-days="30"
+                    >
+                        30D
+                    </button>
+
+                    <button
+                        class="range-btn"
+                        data-days="365"
+                    >
+                        1Y
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 MARKET DATA
+            ================================== -->
+
+            <aside class="market-data">
+
+                <div class="vertical-note">
+                    MARKET / DATA
+                </div>
+
+
+                <article class="data-box">
+
+                    <span>
+                        MARKET CAP
+                    </span>
+
+                    <strong id="marketCap">
+                        —
+                    </strong>
+
+                    <small>
+                        GLOBAL VALUATION
+                    </small>
+
+                </article>
+
+
+                <article class="data-box">
+
+                    <span>
+                        24H VOLUME
+                    </span>
+
+                    <strong id="volume">
+                        —
+                    </strong>
+
+                    <small>
+                        GLOBAL TRADING VOLUME
+                    </small>
+
+                </article>
+
+
+                <article class="data-box">
+
+                    <span>
+                        MARKET STATE
+                    </span>
+
+                    <strong id="marketState">
+                        ACTIVE
+                    </strong>
+
+                    <small>
+                        LIVE API CONNECTION
+                    </small>
+
+                </article>
+
+
+                <div class="hand-note">
+
+                    <span>
+                        NOTE 01
+                    </span>
+
+                    BTC market values update
+                    automatically every 60 seconds.
+
+                    <br><br>
+
+                    ↳ DATA SOURCE:
+                    COINGECKO
+
+                </div>
+
+            </aside>
 
         </section>
 
 
-        <!-- MINING -->
+        <!-- =================================
+             NETWORK
+        ================================== -->
 
-        <section id="mining" class="section">
+        <section
+            class="section"
+            id="network"
+        >
 
-            <div class="section-header">
+            <div class="section-heading">
 
-                <span class="section-number">
-                    02
+                <span>
+                    FIG. 02
                 </span>
 
-                <div>
+                <h2>
+                    NETWORK
+                    PARAMETERS
+                </h2>
 
-                    <p class="eyebrow">
-                        NETWORK
-                    </p>
-
-                    <h2>
-                        Mining Performance
-                    </h2>
-
-                </div>
+                <p>
+                    BITCOIN / COMPUTATIONAL INFRASTRUCTURE
+                </p>
 
             </div>
 
 
-            <div class="stats-grid">
+            <div class="network-grid">
 
-                <article class="stat">
+                <article class="technical-card">
 
-                    <span>
-                        NETWORK HASHRATE
+                    <span class="number">
+                        01
                     </span>
+
+                    <p>
+                        NETWORK HASHRATE
+                    </p>
 
                     <strong>
                         1,021
@@ -915,18 +493,22 @@
                         EH/s
                     </small>
 
-                    <div class="mini-bar">
-                        <span style="width:84%"></span>
+                    <div class="measurement">
+                        ━━━━━━━━━━━ 84%
                     </div>
 
                 </article>
 
 
-                <article class="stat">
+                <article class="technical-card">
 
-                    <span>
-                        NETWORK DIFFICULTY
+                    <span class="number">
+                        02
                     </span>
+
+                    <p>
+                        NETWORK DIFFICULTY
+                    </p>
 
                     <strong>
                         155.6
@@ -936,39 +518,47 @@
                         T
                     </small>
 
-                    <div class="mini-bar">
-                        <span style="width:72%"></span>
+                    <div class="measurement">
+                        ━━━━━━━━━ 72%
                     </div>
 
                 </article>
 
 
-                <article class="stat">
+                <article class="technical-card">
 
-                    <span>
-                        BLOCK HEIGHT
+                    <span class="number">
+                        03
                     </span>
 
+                    <p>
+                        BLOCK HEIGHT
+                    </p>
+
                     <strong>
-                        909,421
+                        909421
                     </strong>
 
                     <small>
                         BLOCK
                     </small>
 
-                    <div class="mini-bar">
-                        <span style="width:61%"></span>
+                    <div class="measurement">
+                        ━━━━━━━ 61%
                     </div>
 
                 </article>
 
 
-                <article class="stat">
+                <article class="technical-card">
 
-                    <span>
-                        BLOCK REWARD
+                    <span class="number">
+                        04
                     </span>
+
+                    <p>
+                        BLOCK REWARD
+                    </p>
 
                     <strong>
                         3.125
@@ -978,43 +568,134 @@
                         BTC
                     </small>
 
-                    <div class="mini-bar">
-                        <span style="width:48%"></span>
+                    <div class="measurement">
+                        ━━━━━ 48%
                     </div>
 
                 </article>
 
             </div>
 
-        </section>
 
+            <div class="diagram">
 
-        <!-- MACHINES -->
+                <div class="diagram-title">
+                    SYSTEM FLOW / CONCEPTUAL
+                </div>
 
-        <section id="machines" class="section">
+                <div class="flow">
 
-            <div class="section-header">
+                    <div class="node">
 
-                <span class="section-number">
-                    03
-                </span>
+                        <span>
+                            NODE 01
+                        </span>
 
-                <div>
+                        <strong>
+                            MINER
+                        </strong>
 
-                    <p class="eyebrow">
-                        HARDWARE
-                    </p>
+                        <small>
+                            COMPUTE
+                        </small>
 
-                    <h2>
-                        Mining Machines
-                    </h2>
+                    </div>
+
+                    <div class="arrow">
+                        ─────────►
+                    </div>
+
+                    <div class="node">
+
+                        <span>
+                            NODE 02
+                        </span>
+
+                        <strong>
+                            HASH
+                        </strong>
+
+                        <small>
+                            SHA-256
+                        </small>
+
+                    </div>
+
+                    <div class="arrow">
+                        ─────────►
+                    </div>
+
+                    <div class="node">
+
+                        <span>
+                            NODE 03
+                        </span>
+
+                        <strong>
+                            BLOCK
+                        </strong>
+
+                        <small>
+                            VALIDATION
+                        </small>
+
+                    </div>
+
+                    <div class="arrow">
+                        ─────────►
+                    </div>
+
+                    <div class="node">
+
+                        <span>
+                            NODE 04
+                        </span>
+
+                        <strong>
+                            NETWORK
+                        </strong>
+
+                        <small>
+                            CONSENSUS
+                        </small>
+
+                    </div>
 
                 </div>
 
             </div>
 
+        </section>
 
-            <div class="machine-table">
+
+        <!-- =================================
+             HARDWARE
+        ================================== -->
+
+        <section
+            class="section"
+            id="hardware"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    FIG. 03
+                </span>
+
+                <h2>
+                    MINING
+                    HARDWARE
+                </h2>
+
+                <p>
+                    MACHINE PERFORMANCE / OBSERVATION LOG
+                </p>
+
+            </div>
+
+
+            <div class="hardware-table">
 
                 <div class="table-head">
 
@@ -1022,7 +703,7 @@
                     <span>STATUS</span>
                     <span>HASHRATE</span>
                     <span>EFFICIENCY</span>
-                    <span>TEMP.</span>
+                    <span>TEMP</span>
                     <span>POWER</span>
 
                 </div>
@@ -1148,37 +829,39 @@
         </section>
 
 
-        <!-- ANALYTICS -->
+        <!-- =================================
+             ECONOMICS
+        ================================== -->
 
-        <section id="analytics" class="section">
+        <section
+            class="section"
+            id="economics"
+        >
 
-            <div class="section-header">
+            <div class="section-heading">
 
-                <span class="section-number">
-                    04
+                <span>
+                    FIG. 04
                 </span>
 
-                <div>
+                <h2>
+                    MINING
+                    ECONOMICS
+                </h2>
 
-                    <p class="eyebrow">
-                        FINANCIAL MODEL
-                    </p>
-
-                    <h2>
-                        Mining Economics
-                    </h2>
-
-                </div>
+                <p>
+                    ESTIMATED OPERATING MODEL
+                </p>
 
             </div>
 
 
-            <div class="economics-grid">
+            <div class="economics">
 
-                <article class="economics-card">
+                <article>
 
                     <span>
-                        EST. DAILY REVENUE
+                        DAILY REVENUE
                     </span>
 
                     <strong>
@@ -1192,10 +875,10 @@
                 </article>
 
 
-                <article class="economics-card">
+                <article>
 
                     <span>
-                        ELECTRICITY COST
+                        ELECTRICITY
                     </span>
 
                     <strong>
@@ -1203,13 +886,13 @@
                     </strong>
 
                     <small>
-                        DAILY / $0.07 kWh
+                        @ $0.07 / kWh
                     </small>
 
                 </article>
 
 
-                <article class="economics-card highlight">
+                <article class="profit">
 
                     <span>
                         EST. DAILY PROFIT
@@ -1227,32 +910,51 @@
 
             </div>
 
+
+            <div class="calculation">
+
+                <span>
+                    OPERATING MODEL
+                </span>
+
+                <code>
+                    REVENUE − ENERGY COST = NET PROFIT
+                </code>
+
+                <span>
+                    $41.82 − $22.47 = $19.35 / DAY
+                </span>
+
+            </div>
+
         </section>
 
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <div>
-                BTC / MINING
-            </div>
-
-            <div>
-                V2.1.0
-            </div>
-
-            <div>
-                DATA: COINGECKO
-            </div>
-
-            <div>
-                © 2026 ANIL
-            </div>
-
-        </footer>
-
     </main>
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer>
+
+        <div>
+            BTC / MINING
+        </div>
+
+        <div>
+            CONCEPT 01 / V2.2
+        </div>
+
+        <div>
+            LIVE MARKET DATA
+        </div>
+
+        <div>
+            ANIL / 2026
+        </div>
+
+    </footer>
 
 </div>
 
@@ -1260,4 +962,5 @@
 <script src="js/app.js"></script>
 
 </body>
+
 </html>
