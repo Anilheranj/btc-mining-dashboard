@@ -1,116 +1,7 @@
 /*
     BTC / MINING
-    V2 — LIVE BITCOIN DATA
-*/
-
-const API_URL =
-    "https://api.coingecko.com/api/v3/simple/price" +
-    "?ids=bitcoin" +
-    "&vs_currencies=usd" +
-    "&include_market_cap=true" +
-    "&include_24hr_vol=true" +
-    "&include_24hr_change=true" +
-    "&include_24hr_high=true" +
-    "&include_24hr_low=true";
-
-
-// ==========================
-// ELEMENTS
-// ==========================
-
-const clock = document.getElementById("clock");
-
-
-// ==========================
-// CLOCK
-// ==========================
-
-function updateClock() {
-
-    if (!clock) return;
-
-    const now = new Date();
-
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
-
-    clock.textContent =
-        `${hours}:${minutes}:${seconds}`;
-}
-
-updateClock();
-
-setInterval(updateClock, 1000);
-
-
-// ==========================
-// FORMATTERS
-// ==========================
-
-function formatUSD(value) {
-
-    return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0
-    }).format(value);
-}
-
-
-function formatCompact(value) {
-
-    return new Intl.NumberFormat("en-US", {
-        notation: "compact",
-        maximumFractionDigits: 2
-    }).format(value);
-}
-
-
-function formatPercent(value) {
-
-    const sign = value >= 0 ? "+" : "";
-
-    return `${sign}${value.toFixed(2)}%`;
-}
-
-
-// ==========================
-// LOAD BITCOIN DATA
-// ==========================
-
-async function loadBitcoinData() {
-
-    try {
-
-        const response = await fetch(API_URL);
-
-        if (!response.ok) {
-            throw new Error(
-                `API error: ${response.status}`
-            );
-        }
-
-        const data = await response.json();
-
-        const btc = data.bitcoin;
-
-        updateDashboard(btc);
-
-        console.log("Bitcoin data updated:", btc);
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load Bitcoin data:",
-            error
-        );
-
-        showOfflineState();
-    }
-/*
-    BTC / MINING
-    V2.1 — LIVE MARKET + INTERACTIVE CHART
+    CONCEPTUAL SKETCH
+    V2.2
 */
 
 
@@ -121,57 +12,62 @@ async function loadBitcoinData() {
 const API_BASE =
     "https://api.coingecko.com/api/v3";
 
-const COIN_ID = "bitcoin";
+const COIN_ID =
+    "bitcoin";
 
 
 // ==========================================
 // DOM
 // ==========================================
 
-const elements = {
+const el = {
 
-    clock: document.getElementById("clock"),
+    clock:
+        document.getElementById("clock"),
 
-    liveText: document.getElementById("liveText"),
+    systemStatus:
+        document.getElementById("systemStatus"),
 
-    systemText: document.getElementById("systemText"),
+    btcPrice:
+        document.getElementById("btcPrice"),
 
-    btcPrice: document.getElementById("btcPrice"),
+    priceChange:
+        document.getElementById("priceChange"),
 
-    priceChange: document.getElementById("priceChange"),
+    btcHigh:
+        document.getElementById("btcHigh"),
 
-    btcHigh: document.getElementById("btcHigh"),
+    btcLow:
+        document.getElementById("btcLow"),
 
-    btcLow: document.getElementById("btcLow"),
+    lastUpdate:
+        document.getElementById("lastUpdate"),
 
-    marketCap: document.getElementById("marketCap"),
+    marketCap:
+        document.getElementById("marketCap"),
 
-    volume: document.getElementById("volume"),
+    volume:
+        document.getElementById("volume"),
 
-    lastUpdate: document.getElementById("lastUpdate"),
+    marketState:
+        document.getElementById("marketState"),
 
-    chart: document.getElementById("priceChart"),
+    chartLine:
+        document.getElementById("chartLine"),
 
-    chartLine: document.getElementById("chartLine"),
+    chartArea:
+        document.getElementById("chartArea"),
 
-    chartArea: document.getElementById("chartArea"),
-
-    chartLoading: document.getElementById("chartLoading"),
+    chartLoading:
+        document.getElementById("chartLoading"),
 
     labels: [
-
         document.getElementById("label1"),
-
         document.getElementById("label2"),
-
         document.getElementById("label3"),
-
         document.getElementById("label4"),
-
         document.getElementById("label5")
-
     ]
-
 };
 
 
@@ -179,11 +75,7 @@ const elements = {
 // STATE
 // ==========================================
 
-let currentDays = 1;
-
-let currentChartData = [];
-
-let refreshTimer = null;
+let selectedDays = 1;
 
 
 // ==========================================
@@ -194,56 +86,59 @@ function updateClock() {
 
     const now = new Date();
 
-    const hours =
+    const h =
         String(now.getHours()).padStart(2, "0");
 
-    const minutes =
+    const m =
         String(now.getMinutes()).padStart(2, "0");
 
-    const seconds =
+    const s =
         String(now.getSeconds()).padStart(2, "0");
 
-    elements.clock.textContent =
-        `${hours}:${minutes}:${seconds}`;
+    el.clock.textContent =
+        `${h}:${m}:${s}`;
 }
+
 
 updateClock();
 
-setInterval(updateClock, 1000);
+setInterval(
+    updateClock,
+    1000
+);
 
 
 // ==========================================
 // FORMATTERS
 // ==========================================
 
-function formatUSD(value) {
+function usd(value) {
 
-    return new Intl.NumberFormat("en-US", {
-
-        style: "currency",
-
-        currency: "USD",
-
-        maximumFractionDigits:
-            value >= 1000 ? 0 : 2
-
-    }).format(value);
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits:
+                value >= 1000 ? 0 : 2
+        }
+    ).format(value);
 }
 
 
-function formatCompactUSD(value) {
+function compact(value) {
 
-    return new Intl.NumberFormat("en-US", {
-
-        notation: "compact",
-
-        maximumFractionDigits: 2
-
-    }).format(value);
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            notation: "compact",
+            maximumFractionDigits: 2
+        }
+    ).format(value);
 }
 
 
-function formatPercent(value) {
+function percent(value) {
 
     const sign =
         value >= 0 ? "+" : "";
@@ -252,53 +147,88 @@ function formatPercent(value) {
 }
 
 
-function formatTime(timestamp) {
+function time(timestamp) {
 
     return new Date(timestamp)
-        .toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
+        .toLocaleTimeString(
+            [],
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
 }
 
 
-function formatDate(timestamp) {
+function date(timestamp) {
 
     return new Date(timestamp)
-        .toLocaleDateString([], {
-            month: "short",
-            day: "numeric"
-        });
+        .toLocaleDateString(
+            [],
+            {
+                month: "short",
+                day: "numeric"
+            }
+        );
 }
 
 
 // ==========================================
-// API — CURRENT MARKET
+// CONNECTION
 // ==========================================
 
-async function fetchMarketData() {
+function setStatus(status) {
 
-    const url =
-        `${API_BASE}/simple/price` +
-        `?ids=${COIN_ID}` +
-        `&vs_currencies=usd` +
-        `&include_market_cap=true` +
-        `&include_24hr_vol=true` +
-        `&include_24hr_change=true` +
-        `&include_24hr_high=true` +
-        `&include_24hr_low=true`;
+    el.systemStatus.textContent =
+        status;
+
+    el.marketState.textContent =
+        status === "LIVE"
+            ? "ACTIVE"
+            : status;
+
+}
+
+
+// ==========================================
+// CURRENT MARKET
+// ==========================================
+
+async function getMarket() {
+
+    const params =
+        new URLSearchParams({
+
+            ids: COIN_ID,
+
+            vs_currencies: "usd",
+
+            include_market_cap: "true",
+
+            include_24hr_vol: "true",
+
+            include_24hr_change: "true",
+
+            include_24hr_high: "true",
+
+            include_24hr_low: "true"
+
+        });
 
 
     const response =
-        await fetch(url, {
-            cache: "no-store"
-        });
+        await fetch(
+            `${API_BASE}/simple/price?${params}`,
+            {
+                cache: "no-store"
+            }
+        );
 
 
     if (!response.ok) {
 
         throw new Error(
-            `Market API error: ${response.status}`
+            `Market API ${response.status}`
         );
     }
 
@@ -308,10 +238,10 @@ async function fetchMarketData() {
 
 
 // ==========================================
-// API — HISTORICAL DATA
+// HISTORICAL MARKET
 // ==========================================
 
-async function fetchChartData(days) {
+async function getHistory(days) {
 
     const params =
         new URLSearchParams({
@@ -322,25 +252,26 @@ async function fetchChartData(days) {
 
             ...(days <= 1
                 ? {}
-                : { interval: "daily" })
+                : {
+                    interval: "daily"
+                })
 
         });
-
-
-    const url =
-        `${API_BASE}/coins/${COIN_ID}/market_chart?${params}`;
 
 
     const response =
-        await fetch(url, {
-            cache: "no-store"
-        });
+        await fetch(
+            `${API_BASE}/coins/${COIN_ID}/market_chart?${params}`,
+            {
+                cache: "no-store"
+            }
+        );
 
 
     if (!response.ok) {
 
         throw new Error(
-            `Chart API error: ${response.status}`
+            `Chart API ${response.status}`
         );
     }
 
@@ -350,72 +281,65 @@ async function fetchChartData(days) {
 
 
 // ==========================================
-// UPDATE MARKET UI
+// UPDATE MARKET
 // ==========================================
 
-function updateMarketUI(data) {
+function updateMarket(data) {
 
     const btc =
         data.bitcoin;
 
 
-    elements.btcPrice.textContent =
-        formatUSD(btc.usd);
+    el.btcPrice.textContent =
+        usd(btc.usd);
 
 
-    elements.btcPrice.classList.remove(
-        "loading-text"
-    );
-
-
-    elements.priceChange.textContent =
-        formatPercent(
+    el.priceChange.textContent =
+        percent(
             btc.usd_24h_change
         );
 
 
-    elements.priceChange.classList.toggle(
+    el.priceChange.classList.toggle(
         "negative",
         btc.usd_24h_change < 0
     );
 
 
-    elements.priceChange.classList.toggle(
-        "positive",
-        btc.usd_24h_change >= 0
-    );
-
-
-    elements.btcHigh.textContent =
-        formatUSD(
+    el.btcHigh.textContent =
+        usd(
             btc.usd_24h_high
         );
 
 
-    elements.btcLow.textContent =
-        formatUSD(
+    el.btcLow.textContent =
+        usd(
             btc.usd_24h_low
         );
 
 
-    elements.marketCap.textContent =
-        formatCompactUSD(
+    el.marketCap.textContent =
+        compact(
             btc.usd_market_cap
         );
 
 
-    elements.volume.textContent =
-        formatCompactUSD(
+    el.volume.textContent =
+        compact(
             btc.usd_24h_vol
         );
 
 
-    elements.lastUpdate.textContent =
-        new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        });
+    el.lastUpdate.textContent =
+        new Date()
+            .toLocaleTimeString(
+                [],
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
 }
 
 
@@ -428,23 +352,22 @@ function drawChart(prices) {
     if (!prices || prices.length < 2) {
 
         throw new Error(
-            "Not enough chart data."
+            "Insufficient chart data"
         );
     }
 
 
-    currentChartData = prices;
-
-
     const width = 1000;
 
-    const height = 300;
+    const height = 350;
 
-    const padding = 8;
+    const padding = 12;
 
 
     const values =
-        prices.map(point => point[1]);
+        prices.map(
+            item => item[1]
+        );
 
 
     const min =
@@ -460,36 +383,58 @@ function drawChart(prices) {
 
 
     const points =
-        prices.map((point, index) => {
+        prices.map(
+            (item, index) => {
 
-            const x =
-                padding +
-                (index / (prices.length - 1)) *
-                (width - padding * 2);
-
-
-            const y =
-                height -
-                padding -
-                ((point[1] - min) / range) *
-                (height - padding * 2);
-
-
-            return {
-                x,
-                y
-            };
-
-        });
+                const x =
+                    padding +
+                    (
+                        index /
+                        (prices.length - 1)
+                    ) *
+                    (
+                        width -
+                        padding * 2
+                    );
 
 
-    const linePath =
+                const y =
+                    height -
+                    padding -
+                    (
+                        (
+                            item[1] - min
+                        ) /
+                        range
+                    ) *
+                    (
+                        height -
+                        padding * 2
+                    );
+
+
+                return {
+                    x,
+                    y
+                };
+
+            }
+        );
+
+
+    const line =
         points
-            .map((point, index) => {
+            .map(
+                (point, index) => {
 
-                return `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`;
+                    return `${
+                        index === 0
+                            ? "M"
+                            : "L"
+                    } ${point.x.toFixed(2)} ${point.y.toFixed(2)}`;
 
-            })
+                }
+            )
             .join(" ");
 
 
@@ -501,29 +446,31 @@ function drawChart(prices) {
         points[points.length - 1];
 
 
-    const areaPath =
-        `${linePath}
-        L ${last.x.toFixed(2)} ${height}
-        L ${first.x.toFixed(2)} ${height}
-        Z`;
+    const area =
+        `${line}
+         L ${last.x.toFixed(2)} ${height}
+         L ${first.x.toFixed(2)} ${height}
+         Z`;
 
 
-    elements.chartLine.setAttribute(
+    el.chartLine.setAttribute(
         "d",
-        linePath
+        line
     );
 
 
-    elements.chartArea.setAttribute(
+    el.chartArea.setAttribute(
         "d",
-        areaPath
+        area
     );
 
 
-    updateChartLabels(prices);
+    updateLabels(
+        prices
+    );
 
 
-    elements.chartLoading.classList.add(
+    el.chartLoading.classList.add(
         "hidden"
     );
 }
@@ -533,11 +480,7 @@ function drawChart(prices) {
 // CHART LABELS
 // ==========================================
 
-function updateChartLabels(prices) {
-
-    const length =
-        prices.length;
-
+function updateLabels(prices) {
 
     const positions = [
         0,
@@ -553,9 +496,10 @@ function updateChartLabels(prices) {
 
             const dataIndex =
                 Math.min(
-                    length - 1,
+                    prices.length - 1,
                     Math.floor(
-                        position * length
+                        position *
+                        prices.length
                     )
                 );
 
@@ -564,21 +508,21 @@ function updateChartLabels(prices) {
                 prices[dataIndex][0];
 
 
-            if (currentDays <= 1) {
+            if (selectedDays <= 1) {
 
-                elements.labels[index]
+                el.labels[index]
                     .textContent =
                     index === 4
                         ? "NOW"
-                        : formatTime(timestamp);
+                        : time(timestamp);
 
             } else {
 
-                elements.labels[index]
+                el.labels[index]
                     .textContent =
                     index === 4
                         ? "NOW"
-                        : formatDate(timestamp);
+                        : date(timestamp);
             }
 
         }
@@ -590,66 +534,68 @@ function updateChartLabels(prices) {
 // LOAD CHART
 // ==========================================
 
-async function loadChart(days) {
+async function loadChart() {
 
-    elements.chartLoading.classList.remove(
+    el.chartLoading.classList.remove(
         "hidden"
     );
+
+    el.chartLoading.textContent =
+        "FETCHING MARKET DATA...";
 
 
     try {
 
-        const data =
-            await fetchChartData(days);
+        const history =
+            await getHistory(
+                selectedDays
+            );
 
 
         drawChart(
-            data.prices
+            history.prices
         );
 
 
     } catch (error) {
 
         console.error(
-            "Chart loading failed:",
             error
         );
 
 
-        elements.chartLoading.textContent =
-            "CHART DATA UNAVAILABLE";
+        el.chartLoading.textContent =
+            "MARKET DATA UNAVAILABLE";
     }
 }
 
 
 // ==========================================
-// LOAD ALL MARKET DATA
+// DASHBOARD LOAD
 // ==========================================
 
 async function loadDashboard() {
 
+    setStatus(
+        "CONNECTING"
+    );
+
+
     try {
 
-        setConnectionState(
-            "CONNECTING"
+        const market =
+            await getMarket();
+
+
+        updateMarket(
+            market
         );
 
 
-        const marketData =
-            await fetchMarketData();
+        await loadChart();
 
 
-        updateMarketUI(
-            marketData
-        );
-
-
-        await loadChart(
-            currentDays
-        );
-
-
-        setConnectionState(
+        setStatus(
             "LIVE"
         );
 
@@ -662,43 +608,8 @@ async function loadDashboard() {
         );
 
 
-        setConnectionState(
+        setStatus(
             "OFFLINE"
-        );
-    }
-}
-
-
-// ==========================================
-// CONNECTION STATE
-// ==========================================
-
-function setConnectionState(state) {
-
-    elements.liveText.textContent =
-        state;
-
-
-    elements.systemText.textContent =
-        state;
-
-
-    const liveStatus =
-        document.querySelector(
-            ".live-status"
-        );
-
-
-    if (state === "OFFLINE") {
-
-        liveStatus.classList.add(
-            "offline"
-        );
-
-    } else {
-
-        liveStatus.classList.remove(
-            "offline"
         );
     }
 }
@@ -714,218 +625,125 @@ const rangeButtons =
     );
 
 
-rangeButtons.forEach(button => {
+rangeButtons.forEach(
+    button => {
 
-    button.addEventListener(
-        "click",
-        async () => {
+        button.addEventListener(
+            "click",
+            async () => {
 
-            rangeButtons.forEach(
-                item => {
-                    item.classList.remove(
-                        "active"
-                    );
-                }
-            );
+                rangeButtons.forEach(
+                    item => {
 
+                        item.classList.remove(
+                            "active"
+                        );
 
-            button.classList.add(
-                "active"
-            );
-
-
-            currentDays =
-                Number(
-                    button.dataset.days
+                    }
                 );
 
 
-            await loadChart(
-                currentDays
-            );
-        }
-    );
+                button.classList.add(
+                    "active"
+                );
 
-});
+
+                selectedDays =
+                    Number(
+                        button.dataset.days
+                    );
+
+
+                await loadChart();
+
+            }
+        );
+
+    }
+);
 
 
 // ==========================================
 // NAVIGATION
 // ==========================================
 
-const navItems =
+const navLinks =
     document.querySelectorAll(
-        ".nav-item"
+        ".nav a"
     );
 
 
-navItems.forEach(item => {
+navLinks.forEach(
+    link => {
 
-    item.addEventListener(
-        "click",
-        () => {
+        link.addEventListener(
+            "click",
+            () => {
 
-            navItems.forEach(nav => {
+                navLinks.forEach(
+                    item => {
 
-                nav.classList.remove(
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                link.classList.add(
                     "active"
                 );
 
-            });
+            }
+        );
 
-
-            item.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-});
+    }
+);
 
 
 // ==========================================
 // AUTO REFRESH
 // ==========================================
 
-// Market data refresh
+setInterval(
+    async () => {
 
-function startRefresh() {
+        try {
 
-    if (refreshTimer) {
-
-        clearInterval(
-            refreshTimer
-        );
-    }
+            const market =
+                await getMarket();
 
 
-    refreshTimer =
-        setInterval(
-            async () => {
-
-                try {
-
-                    const marketData =
-                        await fetchMarketData();
+            updateMarket(
+                market
+            );
 
 
-                    updateMarketUI(
-                        marketData
-                    );
+            setStatus(
+                "LIVE"
+            );
 
 
-                    setConnectionState(
-                        "LIVE"
-                    );
+        } catch (error) {
 
-                } catch (error) {
+            console.error(
+                error
+            );
 
-                    console.error(
-                        error
-                    );
 
-                    setConnectionState(
-                        "OFFLINE"
-                    );
-                }
+            setStatus(
+                "OFFLINE"
+            );
+        }
 
-            },
-            60 * 1000
-        );
-}
+    },
+    60 * 1000
+);
 
 
 // ==========================================
-// START
+// INITIALIZE
 // ==========================================
 
 loadDashboard();
-
-startRefresh();
-}
-
-
-// ==========================
-// UPDATE DASHBOARD
-// ==========================
-
-function updateDashboard(btc) {
-
-    const price = document.querySelector(".price");
-    const positive = document.querySelector(".positive");
-
-    const metaValues =
-        document.querySelectorAll(".price-meta strong");
-
-    const metricValues =
-        document.querySelectorAll(".metric-card strong");
-
-
-    // BTC PRICE
-
-    if (price) {
-
-        price.textContent =
-            formatUSD(btc.usd);
-    }
-
-
-    // 24H CHANGE
-
-    if (positive) {
-
-        positive.textContent =
-            formatPercent(btc.usd_24h_change);
-
-        positive.classList.toggle(
-            "negative",
-            btc.usd_24h_change < 0
-        );
-    }
-
-
-    // HIGH / LOW
-
-    if (metaValues.length >= 2) {
-
-        metaValues[0].textContent =
-            formatUSD(btc.usd_24h_high);
-
-        metaValues[1].textContent =
-            formatUSD(btc.usd_24h_low);
-    }
-
-
-    // MARKET CAP
-
-    if (metricValues[0]) {
-
-        metricValues[0].textContent =
-            formatCompact(btc.usd_market_cap);
-    }
-
-
-    // VOLUME
-
-    if (metricValues[1]) {
-
-        metricValues[1].textContent =
-            formatCompact(btc.usd_24h_vol);
-    }
-
-
-    // LAST UPDATED
-
-    const status =
-        document.querySelector(".live-status strong");
-======================
-// AUTO REFRESH
-// ==========================
-
-// Refresh every 60 seconds
-
-setInterval(
-    loadBitcoinData,
-    60 * 1000
-);
